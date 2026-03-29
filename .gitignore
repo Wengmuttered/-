@@ -1,0 +1,25 @@
+# Node.js
+node_modules/
+dist/
+dist-ssr/
+*.local
+.env
+.env.*
+.DS_Store
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.env
+.venv
+env/
+.pytest_cache/
+
+# IDE
+.vscode/
+.idea/
+
+# OS Files
+Thumbs.db
