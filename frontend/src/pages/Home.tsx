@@ -1,4 +1,5 @@
-import { ShieldAlert, Database, LockKeyhole, FileSignature, ImageOff, ScanFace, Network, LineChart, Activity, MessageSquareWarning, ScanLine } from 'lucide-react';
+import { ShieldAlert, Database, LockKeyhole, FileSignature, ImageOff, ScanFace, Network, LineChart, Activity, MessageSquareWarning, ScanLine, BadgeDollarSign, Globe2, FileDown } from 'lucide-react';
+import html2pdf from 'html2pdf.js';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 
@@ -15,7 +16,21 @@ const Home = () => {
     { title: '全网泄露雷达', desc: '实时监控暗网与公开拖库事件，一键生成您的专属外泄报告', icon: <Database size={32}/>, path: '/leak', color: 'text-purple-400', border: 'border-purple-500/30' },
     { title: '未知应用沙箱', desc: '纯净隔绝的解析环境，深度解剖流氓 APP 的每一项越权行为', icon: <ShieldAlert size={32}/>, path: '/sandbox', color: 'text-red-400', border: 'border-red-500/30' },
     { title: '数据权利主张', desc: '根据《个人信息保护法》自动生成维权法务信件，一键带走', icon: <FileSignature size={32}/>, path: '/rights', color: 'text-green-400', border: 'border-green-500/30' },
+    { title: '全息 3D 态势感知', desc: '【国奖视觉高光】渲染 WebGL 3D 悬浮地球，实时捕捉并展示从公网对你发起扫描试探的暗网服务器物理链路及节点', icon: <Globe2 size={32}/>, path: '/earth', color: 'text-cyan-400', border: 'border-cyan-500 shadow-[0_0_20px_rgba(34,211,238,0.3)]' },
+    { title: '隐私资产变现金库', desc: '【终极商业闭环】联合智能合约与 DP 算法，将处理后的剩余无害数据按价流转售卖至 AI 厂商大模型', icon: <BadgeDollarSign size={32}/>, path: '/marketplace', color: 'text-yellow-400', border: 'border-yellow-500 shadow-[0_0_25px_rgba(234,179,8,0.4)]' },
   ];
+
+  const handleExportPDF = () => {
+     const element = document.getElementById('audit-report-node');
+     const opt = {
+        margin:       0.5,
+        filename:     'PrivacyGuard_2026_Audit_Report.pdf',
+        image:        { type: 'jpeg', quality: 0.98 },
+        html2canvas:  { scale: 2, useCORS: true, backgroundColor: '#0f172a' },
+        jsPDF:        { unit: 'in', format: 'a3', orientation: 'landscape' }
+     };
+     html2pdf().set(opt).from(element).save();
+  };
 
   return (
     <div className="flex flex-col items-center justify-center py-12">
@@ -27,12 +42,18 @@ const Home = () => {
         <h1 className="text-5xl font-extrabold mb-6 tracking-tight">
           掌控你的<span className="text-primary">数字足迹</span>
         </h1>
-        <p className="text-lg text-gray-400 leading-relaxed">
+        <p className="text-lg text-gray-400 leading-relaxed mb-6">
           PrivacyGuard 是新一代个人隐私数据安全管家。我们首创采用**本地沙箱端侧计算**与**K-匿名脱敏传输**，郑重承诺：您的所有检测数据都会在阅后即焚，绝不留存任何明文隐私。
         </p>
+        <button 
+           onClick={handleExportPDF}
+           className="inline-flex items-center gap-2 px-6 py-3 bg-white/10 hover:bg-white/20 text-white border border-white/20 rounded-full font-bold transition-all shadow-lg hover:shadow-[0_0_20px_rgba(255,255,255,0.2)]"
+        >
+           <FileDown size={20} /> 一键开具《国家数字合规白皮书体检总报》(.pdf)
+        </button>
       </motion.div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl">
+      <div id="audit-report-node" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-full max-w-6xl p-4 bg-background-dark/50">
         {cards.map((card, i) => (
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}

@@ -1,5 +1,5 @@
 import { Link, useLocation } from 'react-router-dom';
-import { Shield, Fingerprint, Radar, FileSearch, Scale, ImageOff, ScanFace, Network, LineChart, Activity, MessageSquareWarning, ScanLine } from 'lucide-react';
+import { Shield, Fingerprint, Radar, FileSearch, Scale, ImageOff, ScanFace, Network, LineChart, Activity, MessageSquareWarning, ScanLine, BadgeDollarSign, Globe2 } from 'lucide-react';
 
 const Navbar = () => {
   const location = useLocation();
@@ -17,6 +17,8 @@ const Navbar = () => {
     { path: '/graph', label: '知识图谱', icon: <Network size={18} /> },
     { path: '/dp', label: '差分隐私', icon: <LineChart size={18} /> },
     { path: '/sniffer', label: '动态抓包', icon: <Activity size={18} /> },
+    { path: '/marketplace', label: '数据金库', icon: <BadgeDollarSign size={18} className="text-yellow-400" /> },
+    { path: '/earth', label: '全息态势', icon: <Globe2 size={18} className="text-blue-400" /> },
   ];
 
   return (

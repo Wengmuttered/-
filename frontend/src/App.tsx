@@ -12,6 +12,9 @@ import DifferentialPrivacy from './pages/DifferentialPrivacy';
 import TrafficSniffer from './pages/TrafficSniffer';
 import PhishingDetector from './pages/PhishingDetector';
 import SafeWatermark from './pages/SafeWatermark';
+import DataMarketplace from './pages/DataMarketplace';
+import CyberEarth from './pages/CyberEarth';
+import PrivacyCopilot from './components/PrivacyCopilot';
 
 function App() {
   return (
@@ -36,8 +39,11 @@ function App() {
               <Route path="/sniffer" element={<TrafficSniffer />} />
               <Route path="/phishing" element={<PhishingDetector />} />
               <Route path="/watermark" element={<SafeWatermark />} />
+              <Route path="/marketplace" element={<DataMarketplace />} />
+              <Route path="/earth" element={<CyberEarth />} />
             </Routes>
           </div>
+          <PrivacyCopilot />
         </main>
       </div>
     </BrowserRouter>

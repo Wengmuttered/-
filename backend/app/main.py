@@ -1,6 +1,6 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
-from app.routers import password, breach, app_analyzer, history, nlp, network, osint
+from app.routers import password, breach, app_analyzer, history, nlp, network, osint, broker
 from app.database import engine
 from app.models import Base
 
@@ -32,6 +32,7 @@ app.include_router(history.router, prefix="/api/history", tags=["Privacy Managem
 app.include_router(nlp.router, prefix="/api/nlp", tags=["AI Privacy Scanner"])
 app.include_router(network.router, prefix="/api/network", tags=["Real OS Level Traffic Sniffer"])
 app.include_router(osint.router, prefix="/api/osint", tags=["Real OSINT Port Scanner"])
+app.include_router(broker.router, prefix="/api/broker", tags=["SaaS DP Marketplace"])
 
 @app.get("/")
 def read_root():
