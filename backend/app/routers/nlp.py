@@ -1,6 +1,8 @@
 from fastapi import APIRouter
 from pydantic import BaseModel
 import re
+import jieba
+import jieba.analyse
 
 router = APIRouter()
 
@@ -11,6 +13,7 @@ class PrivacyScanResponse(BaseModel):
     risk_level: str
     score: int
     findings: list[dict]
+    keywords: list[dict]
 
 @router.post("/privacy-scan", response_model=PrivacyScanResponse)
 def scan_privacy_policy(req: PrivacyScanRequest):
@@ -54,6 +57,11 @@ def scan_privacy_policy(req: PrivacyScanRequest):
     # 利用字典键去重
     unique_findings = {f['exact_match']: f for f in findings}.values()
     
+    # [核心技术点] 本地端侧 NLP 分词与 TF-IDF 权重抽离（模拟断网级 AI）
+    jieba.setLogLevel(20) # 屏蔽不必要的日志
+    extracted_tags = jieba.analyse.extract_tags(text, topK=8, withWeight=True, allowPOS=('n', 'v', 'vn'))
+    nlp_keywords = [{"word": tag[0], "weight": round(tag[1], 4)} for tag in extracted_tags]
+    
     risk_level = "纯净 (安全)"
     if total_severity > 60:
         risk_level = "极度危险 (到处都是毒瘤条款)"
@@ -65,5 +73,6 @@ def scan_privacy_policy(req: PrivacyScanRequest):
     return {
         "risk_level": risk_level,
         "score": total_severity,
-        "findings": list(unique_findings)
+        "findings": list(unique_findings),
+        "keywords": nlp_keywords
     }
