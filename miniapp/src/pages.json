@@ -1,0 +1,55 @@
+{
+  "pages": [
+    { "path": "pages/index/index", "style": { "navigationBarTitleText": "隐私管家", "navigationStyle": "custom" } },
+    { "path": "pages/login/index", "style": { "navigationBarTitleText": "登录", "navigationStyle": "custom" } },
+    { "path": "pages/login/visitor", "style": { "navigationBarTitleText": "体验模式", "navigationStyle": "custom" } },
+    { "path": "pages/check/start", "style": { "navigationBarTitleText": "隐私体检" } },
+    { "path": "pages/check/result", "style": { "navigationBarTitleText": "体检结果" } },
+    { "path": "pages/check/history", "style": { "navigationBarTitleText": "体检历史" } },
+    { "path": "pages/risk/index", "style": { "navigationBarTitleText": "风险概览", "navigationStyle": "custom" } },
+    { "path": "pages/risk/permission", "style": { "navigationBarTitleText": "权限风险" } },
+    { "path": "pages/risk/account", "style": { "navigationBarTitleText": "账号安全" } },
+    { "path": "pages/risk/exposure", "style": { "navigationBarTitleText": "隐私暴露" } },
+    { "path": "pages/risk/fraud", "style": { "navigationBarTitleText": "链接诈骗" } },
+    { "path": "pages/risk/policy", "style": { "navigationBarTitleText": "政策风险" } },
+    { "path": "pages/interpret/input", "style": { "navigationBarTitleText": "隐私解读", "navigationStyle": "custom" } },
+    { "path": "pages/interpret/result", "style": { "navigationBarTitleText": "解读结果" } },
+    { "path": "pages/detect/image", "style": { "navigationBarTitleText": "图片识别" } },
+    { "path": "pages/detect/link", "style": { "navigationBarTitleText": "链接扫描" } },
+    { "path": "pages/detect/qrcode", "style": { "navigationBarTitleText": "二维码扫描" } },
+    { "path": "pages/detect/result", "style": { "navigationBarTitleText": "识别结果" } },
+    { "path": "pages/family/bind", "style": { "navigationBarTitleText": "家庭绑定" } },
+    { "path": "pages/family/share", "style": { "navigationBarTitleText": "家庭共享" } },
+    { "path": "pages/message/index", "style": { "navigationBarTitleText": "消息中心", "navigationStyle": "custom" } },
+    { "path": "pages/message/detail", "style": { "navigationBarTitleText": "消息详情" } },
+    { "path": "pages/mine/index", "style": { "navigationBarTitleText": "我的", "navigationStyle": "custom" } },
+    { "path": "pages/mine/records", "style": { "navigationBarTitleText": "操作记录" } },
+    { "path": "pages/mine/feedback", "style": { "navigationBarTitleText": "意见反馈" } }
+  ],
+  "globalStyle": {
+    "navigationBarTextStyle": "white",
+    "navigationBarTitleText": "隐私管家",
+    "navigationBarBackgroundColor": "#020617",
+    "backgroundColor": "#020617",
+    "backgroundTextStyle": "dark"
+  },
+  "tabBar": {
+    "color": "#475569",
+    "selectedColor": "#00F4A3",
+    "backgroundColor": "#020617",
+    "borderStyle": "black",
+    "list": [
+      { "pagePath": "pages/index/index", "text": "首页", "iconPath": "static/tabs/home.png", "selectedIconPath": "static/tabs/home-active.png" },
+      { "pagePath": "pages/risk/index", "text": "风险", "iconPath": "static/tabs/risk.png", "selectedIconPath": "static/tabs/risk-active.png" },
+      { "pagePath": "pages/interpret/input", "text": "解读", "iconPath": "static/tabs/interpret.png", "selectedIconPath": "static/tabs/interpret-active.png" },
+      { "pagePath": "pages/message/index", "text": "消息", "iconPath": "static/tabs/message.png", "selectedIconPath": "static/tabs/message-active.png" },
+      { "pagePath": "pages/mine/index", "text": "我的", "iconPath": "static/tabs/mine.png", "selectedIconPath": "static/tabs/mine-active.png" }
+    ]
+  },
+  "easycom": {
+    "autoscan": true,
+    "custom": {
+      "^uni-(.*)": "@dcloudio/uni-ui/lib/uni-$1/uni-$1.vue"
+    }
+  }
+}

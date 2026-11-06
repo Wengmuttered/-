@@ -1,0 +1,202 @@
+// ============================================================
+// 个人隐私数据安全管家 — 玻璃拟态公共组件 & 工具类
+// ============================================================
+
+// ==================== 安全区与页面 ====================
+.safe-area-top { padding-top: var(--status-bar-height, 44px); }
+.safe-area-bottom { padding-bottom: env(safe-area-inset-bottom, 0); }
+
+.page-container {
+  min-height: 100vh;
+  background-color: $bg-page;
+  padding-bottom: 120rpx;
+}
+
+// 全局赛博朋克大网格底纹背景
+.matrix-bg {
+  position: relative;
+  overflow: hidden;
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 80rpx 80rpx;
+  background-position: center;
+  
+  // 底部极光强光球
+  &::before {
+    content: '';
+    position: absolute;
+    bottom: -10vh;
+    left: 20vw;
+    width: 60vw;
+    height: 40vh;
+    background: radial-gradient(circle, $primary-glow 0%, transparent 60%);
+    filter: blur(80px);
+    opacity: 0.5;
+    pointer-events: none;
+  }
+}
+
+// 供页面层的内容强制压在背景上网格上的 Z轴提升
+.relative-content {
+  position: relative;
+  z-index: 1;
+}
+
+// ==================== 头部排版 (极简杂志风) ====================
+.page-header {
+  padding: $spacing-xl $spacing-lg $spacing-md;
+}
+
+.page-title {
+  font-family: "SF Pro Display", -apple-system, sans-serif;
+  font-size: $font-xl;
+  font-weight: 800;
+  color: $text-primary;
+  letter-spacing: 4rpx;
+  margin-bottom: $spacing-xs;
+  display: block; // 修复 view 并排问题
+}
+
+.page-subtitle {
+  font-size: $font-sm;
+  color: $text-secondary;
+  display: block;
+}
+
+// ==================== ✨核心科技：毛玻璃卡片 .glass-card ====================
+.glass-card {
+  position: relative;
+  background: $bg-glass;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-radius: $radius-lg;
+  border: $glass-border;
+  padding: $spacing-lg;
+  margin: $spacing-md $spacing-lg;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+
+  // 悬停状态（如果环境支持）- 产生微弱自发光
+  &:active {
+    background: $bg-glass-hover;
+    border-color: $primary-glow;
+    transform: scale(0.98);
+  }
+
+  // 用一个微弱的左上角白色弧光线增加细腻度
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.2) 0%, transparent 80%);
+    pointer-events: none;
+  }
+}
+
+// 玻璃卡片独有的标题
+.glass-title {
+  font-size: $font-md;
+  font-weight: 600;
+  color: $text-primary;
+  margin-bottom: $spacing-md;
+  display: flex;
+  align-items: center;
+
+  // 使用一个发光的发光点，取代普通的直棒线条
+  &::before {
+    content: '';
+    width: 8rpx;
+    height: 8rpx;
+    background: $primary;
+    box-shadow: 0 0 12rpx $primary;
+    border-radius: 50%;
+    margin-right: $spacing-sm;
+  }
+}
+
+// ==================== 微型胶囊标签 (Risk Tag) ====================
+.risk-tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 6rpx 20rpx;
+  border-radius: $radius-full;
+  font-size: $font-xs;
+  font-weight: 800;
+  letter-spacing: 2rpx;
+  text-transform: uppercase;
+  border: 1px solid transparent;
+
+  &--safe { background: $success-light; color: $success; border-color: rgba(16, 185, 129, 0.3); }
+  &--low { background: $primary-bg; color: $primary; border-color: rgba(56, 189, 248, 0.3); }
+  &--medium { background: $warning-light; color: $warning; border-color: rgba(245, 158, 11, 0.3); }
+  &--high { background: $danger-light; color: $danger; border-color: rgba(244, 63, 94, 0.3); box-shadow: 0 0 20rpx $danger-glow; }
+}
+.mini { padding: 4rpx 12rpx !important; font-size: 18rpx !important; }
+
+// ==================== 终极发光按钮 ====================
+.btn-cyber {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: $primary;
+  height: 96rpx;
+  border: 2rpx solid $primary;
+  border-radius: $radius-md;
+  font-size: $font-md;
+  font-weight: 800;
+  letter-spacing: 4rpx;
+  text-transform: uppercase;
+  overflow: hidden;
+  transition: all 0.3s;
+  box-shadow: 0 0 20rpx $primary-glow inset;
+
+  &::after { border: none; }
+  
+  &:active {
+    background: $primary;
+    color: $black-zero;
+    box-shadow: 0 0 40rpx $primary-glow;
+    transform: scale(0.97);
+  }
+}
+
+// ==================== 排版与数据特化 ====================
+.number-cyber {
+  font-family: 'DM Sans', -apple-system, sans-serif;
+  background: linear-gradient(135deg, #FFFFFF 0%, $primary 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 900;
+}
+
+// ==================== 清除白边框的杂项 ====================
+.list-item {
+  display: flex;
+  align-items: center;
+  padding: $spacing-md 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+
+  &:last-child { border-bottom: none; }
+}
+
+// ==================== 动画宇宙 ====================
+@keyframes fadeUp {
+  0% { opacity: 0; transform: translateY(60rpx) translateZ(0); filter: blur(10px); }
+  100% { opacity: 1; transform: translateY(0) translateZ(0); filter: blur(0); }
+}
+
+.anim-fade-up {
+  animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  opacity: 0;
+}
+
+@for $i from 1 through 10 {
+  .anim-delay-#{$i} { animation-delay: #{$i * 0.08}s; }
+}
+
+// 文字截断
+.ellipsis { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }

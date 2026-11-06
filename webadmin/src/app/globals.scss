@@ -1,0 +1,196 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=SF+Pro+Display:wght@400;600;800&display=swap');
+
+:root {
+  /* 赛博极客配色体系 */
+  --bg-dark: #020617;
+  --bg-panel: rgba(15, 23, 42, 0.6);
+  --bg-float: rgba(30, 41, 59, 0.4);
+  
+  --primary-cyber: #00F4A3; /* 极光防备绿 */
+  --primary-glow: rgba(0, 244, 163, 0.3);
+  
+  --danger-cyber: #F43F5E;
+  --danger-glow: rgba(244, 63, 94, 0.3);
+  
+  --warning-cyber: #F59E0B;
+  
+  --text-primary: #F8FAFC;
+  --text-secondary: #94A3B8;
+  --text-command: rgba(255, 255, 255, 0.5);
+  
+  --border-glass: rgba(0, 244, 163, 0.2);
+  --border-glass-light: rgba(255, 255, 255, 0.1);
+  --shadow-glass: 0 4px 30px rgba(0, 0, 0, 0.5);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-primary);
+  font-family: 'SF Pro Display', -apple-system, sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  
+  /* 酷炫暗网深色网格底图 */
+  background-image: 
+    linear-gradient(rgba(0, 244, 163, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 244, 163, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+  background-position: center center;
+}
+
+/* 字体设定 */
+.font-mono {
+  font-family: 'Fira Code', monospace;
+}
+
+/* 滚动条静音化 */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--bg-panel);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--primary-glow);
+}
+
+/* 核心玻璃面板：替换所有传统的白底块 */
+.glass-panel {
+  background: var(--bg-panel);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--border-glass-light);
+  border-radius: 8px;
+  box-shadow: var(--shadow-glass);
+  transition: all 0.3s ease;
+}
+
+.glass-panel:hover {
+  border-color: var(--border-glass);
+  box-shadow: 0 0 20px var(--primary-glow);
+}
+
+/* 仪表盘指令风格标签 */
+.cyber-label {
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  color: var(--primary-cyber);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-shadow: 0 0 8px var(--primary-glow);
+}
+
+/* 系统流光发光按键 */
+.btn-cyber {
+  background: rgba(0, 244, 163, 0.1);
+  color: var(--primary-cyber);
+  border: 1px solid var(--primary-cyber);
+  padding: 8px 24px;
+  font-family: 'Fira Code', monospace;
+  font-size: 14px;
+  font-weight: 700;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 0 10px inset var(--primary-glow);
+}
+.btn-cyber:hover {
+  background: var(--primary-cyber);
+  color: var(--bg-dark);
+  box-shadow: 0 0 20px var(--primary-cyber);
+}
+
+.btn-danger {
+  background: rgba(244, 63, 94, 0.1);
+  color: var(--danger-cyber);
+  border: 1px solid var(--danger-cyber);
+  box-shadow: 0 0 10px inset var(--danger-glow);
+}
+.btn-danger:hover {
+  background: var(--danger-cyber);
+  color: #fff;
+  box-shadow: 0 0 20px var(--danger-cyber);
+}
+
+/* 数据终端输入框 */
+.cyber-input {
+  background: rgba(0,0,0,0.4);
+  border: 1px solid var(--border-glass-light);
+  color: var(--text-primary);
+  padding: 10px 16px;
+  border-radius: 4px;
+  width: 100%;
+  font-family: 'Fira Code', monospace;
+  transition: all 0.2s;
+}
+.cyber-input:focus {
+  outline: none;
+  border-color: var(--primary-cyber);
+  box-shadow: 0 0 10px inset var(--primary-glow);
+}
+
+/* 代码发光波纹动画 */
+.glitch-text {
+  animation: txtGlitch 2s infinite;
+}
+@keyframes txtGlitch {
+  0% { text-shadow: 2px 0 var(--danger-cyber); }
+  25% { text-shadow: -2px 0 var(--primary-cyber); }
+  50% { text-shadow: 2px 0 var(--danger-cyber); }
+  100% { text-shadow: 0 0 blur; }
+}
+
+/* 全景安全表格 */
+.cyber-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.cyber-table th {
+  text-align: left;
+  padding: 16px;
+  font-family: 'Fira Code', monospace;
+  font-size: 12px;
+  color: var(--text-secondary);
+  border-bottom: 1px dashed var(--border-glass-light);
+}
+.cyber-table td {
+  padding: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  font-size: 14px;
+}
+.cyber-table tr:hover td {
+  background: rgba(0, 244, 163, 0.05);
+}
+
+/* 网格系统基石 */
+.layout-container {
+  display: flex;
+  min-height: 100vh;
+}
+.sidebar-terminal {
+  width: 260px;
+  border-right: 1px solid var(--border-glass-light);
+  background: rgba(2, 6, 23, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  flex-direction: column;
+}
+.main-dashboard {
+  flex: 1;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow-y: auto;
+}

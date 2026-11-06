@@ -1,25 +1,29 @@
-# Node.js
+# Compiled class file
+*.class
+
+# Log file
+*.log
+
+# Package Files
+*.jar
+*.war
+*.nar
+*.ear
+*.zip
+*.tar.gz
+*.rar
+
+# Maven
+target/
+**/target/
+
+# Node
 node_modules/
-dist/
-dist-ssr/
-*.local
-.env
-.env.*
+**/node_modules/
+
+# OS / Editor
 .DS_Store
-
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-venv/
-.env
-.venv
-env/
-.pytest_cache/
-
-# IDE
-.vscode/
-.idea/
-
-# OS Files
 Thumbs.db
+.idea/
+*.iml
+.vscode/

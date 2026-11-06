@@ -1,0 +1,72 @@
+# ============================================================
+# 个人隐私数据安全管家 - 公共配置
+# ============================================================
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: privacy-guard
+
+  # 数据库连接
+  datasource:
+    url: jdbc:postgresql://localhost:5432/privacyguard
+    username: postgres
+    password: 1967748190wjk
+    driver-class-name: org.postgresql.Driver
+
+  # JPA 配置
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          batch_size: 50
+        order_inserts: true
+        order_updates: true
+
+  # Jackson 序列化配置
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+  # 文件上传限制
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+
+  # 响应压缩
+  compression:
+    enabled: true
+    mime-types: application/json,text/html,text/xml,text/plain
+
+# 日志配置
+logging:
+  level:
+    root: INFO
+    com.privacyguard: DEBUG
+    org.hibernate.SQL: WARN
+
+# ============================================================
+# 系统底层身份准入与通讯权限配置
+# ============================================================
+wechat:
+  miniapp:
+    appid: wxdaca828ee6f8366a
+    secret: efaa5bd60194bc39c237f0f543af5d79
+
+jwt:
+  secret: MjAyNl9TU1BfQU5USUdSQVZJVFlfQ1lCRVJfU0VDVVJJVFlfUFJJVkFDWV9HVUFSRF9QRVJGRUNU_S0VZ
+  expiration: 604800

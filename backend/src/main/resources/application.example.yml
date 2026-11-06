@@ -1,0 +1,62 @@
+# Privacy Guard backend configuration template.
+# Copy to application.yml or set the same values with environment variables.
+
+server:
+  port: 8080
+  servlet:
+    context-path: /api
+
+spring:
+  application:
+    name: privacy-guard
+
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/privacyguard}
+    username: ${DB_USERNAME:postgres}
+    password: ${DB_PASSWORD:postgres}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    open-in-view: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          batch_size: 50
+        order_inserts: true
+        order_updates: true
+
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: Asia/Shanghai
+    serialization:
+      write-dates-as-timestamps: false
+    default-property-inclusion: non_null
+
+  servlet:
+    multipart:
+      max-file-size: 10MB
+      max-request-size: 20MB
+
+  compression:
+    enabled: true
+    mime-types: application/json,text/html,text/xml,text/plain
+
+logging:
+  level:
+    root: INFO
+    com.privacyguard: DEBUG
+    org.hibernate.SQL: WARN
+
+wechat:
+  miniapp:
+    appid: ${WECHAT_APPID:replace-with-your-wechat-miniapp-appid}
+    secret: ${WECHAT_SECRET:replace-with-your-wechat-miniapp-secret}
+
+jwt:
+  secret: ${JWT_SECRET:replace-with-a-long-random-secret-at-least-32-bytes}
+  expiration: ${JWT_EXPIRATION:604800}
